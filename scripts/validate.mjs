@@ -8,7 +8,7 @@ const skill=path.join(root,'skills/teacher-webapp-review');
 const refs=path.join(skill,'references');
 const activities=fs.readdirSync(refs).filter(n=>/^activity-\d\d\.md$/.test(n)).sort();
 assert.equal(activities.length,37);
-const files=['SKILL.md','references/index.md','references/common.md',...activities.map(n=>'references/'+n)];
+const files=['SKILL.md',...fs.readdirSync(refs).filter(n=>n.endsWith('.md')).map(n=>'references/'+n)];
 let prompts=0,localLinks=0;
 for(const rel of files){
  const file=path.join(skill,rel),text=fs.readFileSync(file,'utf8').replace(/\r\n/g,'\n');
